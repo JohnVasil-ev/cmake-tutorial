@@ -1,0 +1,114 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "x64-windows",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_VERBOSE_MAKEFILE": "ON"
+      },
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "toolset": {
+        "value": "v143,host=x64",
+        "strategy": "external"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [
+            "Windows"
+          ]
+        }
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "g++-x64-windows",
+      "hidden": true,
+      "inherits": "x64-windows",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "g++"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "intelliSenseMode": "linux-gcc-x64"
+        }
+      }
+    },
+    {
+      "name": "g++-x64-windows-dbg",
+      "displayName": "g++-Debug",
+      "inherits": "g++-x64-windows",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "g++-x64-windows-rel",
+      "displayName": "g++-Release",
+      "inherits": "g++-x64-windows",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "g++-x64-windows-rdi",
+      "displayName": "g++-RelWithDebInfo",
+      "inherits": "g++-x64-windows",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "g++-x64-windows-dbg-all",
+      "displayName": "All",
+      "configurePreset": "g++-x64-windows-dbg",
+      "targets": [
+        "cmake-tutorial"
+      ]
+    },
+    {
+      "name": "g++-x64-windows-rel-all",
+      "displayName": "All",
+      "configurePreset": "g++-x64-windows-rel",
+      "targets": [
+        "cmake-tutorial"
+      ]
+    },
+    {
+      "name": "g++-x64-windows-rdi-all",
+      "displayName": "All",
+      "configurePreset": "g++-x64-windows-rdi",
+      "targets": [
+        "cmake-tutorial"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "g++-x64-windows-dbg-test-base",
+      "displayName": "Generic Tests",
+      "configurePreset": "g++-x64-windows-dbg",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "verbose"
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": false,
+        "jobs": 8
+      }
+    }
+  ]
+}

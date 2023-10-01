@@ -1,0 +1,9 @@
+{
+  "name": "cmake-tutorial",
+  "displayName": "CMake Tutorial",
+  "version": "0.1.0",
+  "description": "Simple CMake project to investigate build process",
+  "author": "John Vasiliev <va3iliev.ip@gmail.com>",
+  "homepage": "https://github.com/JohnVasil-ev/cmake-tutorial",
+  "license": "MIT"
+}
