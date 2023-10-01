@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.25)
 
 #-------------------------------------------------------------------
+# Configure early CMAKE paths
+#-------------------------------------------------------------------
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/CMake")
+
+#-------------------------------------------------------------------
 # Project
 #-------------------------------------------------------------------
 
@@ -21,10 +27,8 @@ project(${PROJECT_NAME} DESCRIPTION ${PROJECT_DESCRIPTION} VERSION ${PROJECT_VER
 #-------------------------------------------------------------------
 
 set(PROJECT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
-add_executable(${PROJECT_NAME} "${PROJECT_SOURCE_DIR}/main.cpp")
+add_executable(${PROJECT_NAME}
+    "${PROJECT_SOURCE_DIR}/main.cpp"
+)
 
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_20)
-
-target_include_directories(${PROJECT_NAME} INTERFACE
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
-)
